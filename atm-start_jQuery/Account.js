@@ -9,7 +9,7 @@ Account = {
   history: {},
 
   this.setBalance = function(amount){
-    return this.checkBalance(amount) ? (this.balance += amount) : null;
+    return this.checkAmount(amount) ? (this.balance += amount) : null;
   }
 
   this.checkAmount = function(amount){
