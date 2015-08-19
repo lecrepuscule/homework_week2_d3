@@ -53,6 +53,8 @@ currentAccount1.setBalance = function(amount){
     return null;
   }
 }
+///end object definition///
+
 
 $(document).ready(function(){
   setup();
@@ -76,12 +78,9 @@ function changeBalanceHandler(){
   var operation = $button.val();
 
   if (validateInput(amount)) {
-    var account = accounts[$account.attr("id")] //enhancement using actual ids in Account object can be made
+    var account = accounts[$account.attr("id")] //enhancement using actual ids in Account object should be made
     var newBalance = doOperation(operation, amount, account);
     updateDisplay(newBalance,$balance);
-    // newBalance !== null ? $balance.text("$"+newBalance) : console.log("not enough balance!");
-    $("#balance2").text("$"+savingsAccount1.getBalance());
-
   }
   else {
     $amount.val("POSITIVE NUMBER ONLY");
@@ -115,5 +114,6 @@ function updateDisplay(balance, disiplayElement){
     }
 
     $("#balance2").text("$"+savingsAccount1.getBalance());
+    $("#balance2").css("background-color", (savingsAccount1.getBalance() > 0 ? "#E3E3E3" : "red"));
 
 }
