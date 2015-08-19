@@ -4,13 +4,19 @@ $(document).ready(function(){
 
 function setup(){
   //initanciate accounts
-  //add eventlisteners
+  console.log("hello");
+  $("body").on("click","[type=button]", changeBalanceHandler);
 }
 
-function withdrawalHandler(){
-
+function changeBalanceHandler(){
+  validateInput();
+  //get id (parentid) -> account type
+  findAccountType();
+  //get value -> addition/subtraction
+  determineActivity();
+  //do banking stuff
+  //show output
+  updateAccount();
 }
 
-function depositionHandler(){
-  
-}
+

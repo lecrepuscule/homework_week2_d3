@@ -13,7 +13,7 @@ Account = {
 
   this.checkAmount = function(amount){
     if (!isNaN(amount)) {
-      return (this.balance - Math.abs(amount)) >=0 ? true : false;
+      return (this.balance + amount) >=0 ? true : false;
     } 
     else {
       console.log("NaN in checkBalance");
