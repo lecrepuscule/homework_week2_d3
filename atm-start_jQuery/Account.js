@@ -1,6 +1,7 @@
 var Account = Account || {};
 
 Account = {
+  id: 0,
   type: null,
   name: null,
   balance: 0,
