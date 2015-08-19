@@ -45,6 +45,9 @@ currentAccount1.setBalance = function(amount){
       savingsAccount1.setBalance(this.balance + amount);
       return this.balance = 0;
     }
+    else {
+      return null;
+    }
   } 
   else {
     return null;
@@ -75,8 +78,8 @@ function changeBalanceHandler(){
   if (validateInput(amount)) {
     var account = accounts[$account.attr("id")] //enhancement using actual ids in Account object can be made
     var newBalance = doOperation(operation, amount, account);
-    
-    newBalance !== null ? $balance.text("$"+newBalance) : console.log("not enough balance!");
+    updateDisplay(newBalance,$balance);
+    // newBalance !== null ? $balance.text("$"+newBalance) : console.log("not enough balance!");
     $("#balance2").text("$"+savingsAccount1.getBalance());
 
   }
@@ -98,8 +101,19 @@ function doOperation(operation, amount, account){
   }
 }
 
-
 function validateInput(amount){
   return (isNaN(amount) || amount <= 0) ? false : true;
 }
 
+function updateDisplay(balance, disiplayElement){
+    if (balance !== null) {
+      disiplayElement.css("background-color", (balance > 0 ? "#E3E3E3" : "red"));
+      disiplayElement.text("$"+balance);
+    }
+    else {
+      console.log("not enough balance!");
+    }
+
+    $("#balance2").text("$"+savingsAccount1.getBalance());
+
+}
