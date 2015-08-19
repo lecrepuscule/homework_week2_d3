@@ -41,8 +41,8 @@ currentAccount1.setBalance = function(amount){
   } 
   else if (enoughBalance !== NaN) {
     var totalBalance = this.balance + savingsAccount1.getBalance();
-    if (this.checkAmount(totalBalance)) {
-      savingsAccount1.setBalance(totalBalance + amount + this.balance);
+    if (totalBalance + amount >= 0) {
+      savingsAccount1.setBalance(this.balance + amount);
       return this.balance = 0;
     }
   } 
@@ -77,6 +77,8 @@ function changeBalanceHandler(){
     var newBalance = doOperation(operation, amount, account);
     
     newBalance !== null ? $balance.text("$"+newBalance) : console.log("not enough balance!");
+    $("#balance2").text("$"+savingsAccount1.getBalance());
+
   }
   else {
     $amount.val("POSITIVE NUMBER ONLY");
