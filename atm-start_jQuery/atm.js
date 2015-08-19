@@ -34,6 +34,22 @@ Account = {
 
 var currentAccount1 = Object.create(Account);
 var savingsAccount1 = Object.create(Account);
+currentAccount1.setBalance = function(amount){
+  var enoughBalance = this.checkAmount(amount);
+  if (enoughBalance){
+    return this.balance += amount;
+  } 
+  else if (enoughBalance !== NaN) {
+    var totalBalance = this.balance + savingsAccount1.getBalance();
+    if (this.checkAmount(totalBalance)) {
+      savingsAccount1.setBalance(totalBalance + amount + this.balance);
+      return this.balance = 0;
+    }
+  } 
+  else {
+    return null;
+  }
+}
 
 $(document).ready(function(){
   setup();
