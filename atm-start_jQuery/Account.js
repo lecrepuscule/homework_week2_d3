@@ -1,8 +1,8 @@
 var Account = Account || {};
 
-Account = {
-  id: 0,
-  type: null,
+function Account (id, type, name, balance, overDraftLimit)= {
+  this.id = 0,
+  this.type = null,
   name: null,
   balance: 0,
   overDraftLimit: 0,

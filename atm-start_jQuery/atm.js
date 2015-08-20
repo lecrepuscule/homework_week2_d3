@@ -1,4 +1,5 @@
-////object definition///
+////object definition///Sorry Gui! it seems to only work when I put everything about the object up top... probably because the OO is half half...
+
 var Account = Account || {};
 
 Account = {
@@ -10,7 +11,11 @@ Account = {
   history: {},
 
   setBalance: function(amount){
-    return this.checkAmount(amount) ? (this.balance += amount) : null;
+    if (this.checkAmount(amount)){ 
+      this.balance += amount;
+      var now = new Date();
+      this.history[now] = amount; 
+    }
   },
 
   checkAmount: function(amount){
@@ -36,13 +41,18 @@ var currentAccount1 = Object.create(Account);
 var savingsAccount1 = Object.create(Account);
 currentAccount1.setBalance = function(amount){
   var enoughBalance = this.checkAmount(amount);
+  var now = new Date();
   if (enoughBalance){
+    this.history[now] = amount;
     return this.balance += amount;
   } 
   else if (enoughBalance !== NaN) {
     var totalBalance = this.balance + savingsAccount1.getBalance();
     if (totalBalance + amount >= 0) {
+      savingsAccount1.history[now] = this.balance+amount;
       savingsAccount1.setBalance(this.balance + amount);
+
+      this.history[now] = -this.balance;
       return this.balance = 0;
     }
     else {
